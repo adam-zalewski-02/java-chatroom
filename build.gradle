@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+def vertxVersion = '4.2.4'
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation "io.vertx:vertx-core:$vertxVersion"
+    implementation "io.vertx:vertx-web:$vertxVersion"
+}
+
+test {
+    useJUnitPlatform()
+}
+mainClassName = 'io.vertx.core.Launcher'
+
+run {
+    args = ['run', 'howest.ti.chat.MainVerticle', "--launcher-class=$mainClassName"]
+}
